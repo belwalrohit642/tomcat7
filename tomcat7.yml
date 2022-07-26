@@ -19,34 +19,20 @@
                     state: present
           - name: Create a Tomcat Directory
             file:
-             path: /opt/tomcat7
-             owner: tomcat
-             group: tomcat
-             mode: 755
-             recurse: yes        
-         - name: download & unarchive tomcat7
-           unarchive:
-             src: http://www-us.apache.org/dist/tomcat/tomcat-7/v7.0.99/bin/apache-tomcat-7.0.99.tar.gz
-             dest: /opt/tomcat7
-             remote_src: yes
-             extra_opts: [--strip-components=1]
-         - name: Change ownership of tomcat directory
-           file:
-             path: /opt/tomcat7
-             owner: tomcat
-             group: tomcat
-             mode: "u+rwx,g+rx,o=rx"
-             recurse: yes
-             state: directory
-         - name: Copy Tomcat service from local to remote
-           copy:
-            src: /etc/tomcat.service
-            dest: /etc/systemd/system/
-            mode: 0755
-
-         - name: Start and Enable Tomcat 7 on sever
-           systemd:
-             name: tomcat
-             state: started
-             daemon_reload: true
-
+               path: /opt/tomcat7
+               owner: tomcat
+               group: tomcat
+               mode: 755
+               recurse: yes          
+          - name: download the tomcat7 package
+            get_url:
+                    url: https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.32/bin/apache-tomcat-7.0.32-fulldocs.tar.gz
+                    dest: /opt/tomcat7
+          
+          - name: extract the tomcat package
+            unarchive:
+                    src: /opt/tomcat7/apache-tomcat-7.0.32-fulldocs.tar.gz
+                    dest: /opt/tomcat7
+                    remote_src: yes
+          - name: start tomcat services
+            shell: nohup /opt/tomcat7/apache-tomcat-7.0.90/bin/startup.sh
