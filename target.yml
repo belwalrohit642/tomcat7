@@ -1,0 +1,11 @@
+---
+- name: move the war file to webapp
+  hosts: all
+  become: true
+  tasks:
+          - name: copy the war
+            copy: 
+              src: /var/lib/jenkins/workspace/rahul_tomcat7_build/target/Spring3HibernateApp.war 
+              dest: /opt/tomcat/webapps     
+
+         

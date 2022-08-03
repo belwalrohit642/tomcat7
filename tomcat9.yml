@@ -26,12 +26,12 @@
                recurse: yes          
           - name: download the tomcat9 package
             get_url:
-                    url: https://downloads.apache.org/tomcat/tomcat-9/v9.0.35/bin/apache-tomcat-9.0.35.tar.gz -O tomcat.9.0.35.tar.gz
+                    url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz
                     dest: /opt/tomcat
           
           - name: extract the tomcat package
             unarchive:
-                    src: /opt/tomcat/apache-tomcat-9.0.35.tar.gz -O tomcat.9.0.35.tar.gz
+                    src: /opt/tomcat/apache-tomcat-9.0.65.tar.gz
                     dest: /opt/tomcat
                     remote_src: yes
                     extra_opts: [--strip-components=1]

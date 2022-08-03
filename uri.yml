@@ -1,0 +1,11 @@
+---
+- name: health check
+  hosts: all
+  become: true
+  tasks:
+    - name: health check module      
+      uri:
+        url: "http://192.168.57.8:8080/java-hello-world/"
+      register: result
+      delay: 10
+      failed_when: result.status != 200
