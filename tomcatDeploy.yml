@@ -16,7 +16,7 @@
                     remove: yes
           - name: copy the war
             copy:
-              src: /var/lib/jenkins/workspace/rahul_tomcat7_build/target/Spring3HibernateApp.war
+              src: /var/lib/jenkins/workspace/rahul_tomcat7_build/target/java-hello-world.war
               dest: /opt/tomcat/webapps
 
           - name: restart the tomcat
