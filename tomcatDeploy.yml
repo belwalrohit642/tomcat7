@@ -23,8 +23,6 @@
             service:
                     name: tomcat
                     state: restarted
-          - name: health check
-            command: curl -s -o /dev/null -w "%{http_code}" http://192.168.57.8:8080/java-hello-world/
 
           - name: health check module
             uri:
