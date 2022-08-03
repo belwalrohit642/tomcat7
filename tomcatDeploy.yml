@@ -24,9 +24,13 @@
                     name: tomcat
                     state: restarted
 
+          - name: sleep for 30 second
+            wait_for:
+                    timeout: 30
+
           - name: health check module
             uri:
               url: "http://192.168.57.8:8080/java-hello-world/"
             register: result
-            delay: 30
+            delay: 10
             failed_when: result.status != 200       
